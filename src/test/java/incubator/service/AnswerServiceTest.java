@@ -3,8 +3,7 @@ package incubator.service;
 import incubator.config.HibernateConfig;
 import incubator.config.WebConfig;
 import incubator.dao.AnswerRepository;
-import incubator.model.Answer;
-import incubator.model.Question;
+import incubator.model.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;
@@ -31,5 +30,22 @@ public class AnswerServiceTest extends AbstractTestNGSpringContextTests {
     }*/
 
 
+    @Test
+    public void test1() {
+
+/*    A a = new A();
+    a = new B();
+
+    System.out.println(a.getClass());
+    C.method12(a);*/
+
+/*    B b = new B();
+    A a = new B();
+    b = (B) new A();
+
+    a.meth();
+    System.out.println(a.getClass());
+    C.method12(a);*/
+    }
 
 }
