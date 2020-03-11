@@ -6,6 +6,11 @@ import org.springframework.stereotype.Service;
 @Service
 public class RoleService {
 
+    /**
+     * Method returns current role for model by String description
+      * @param nameRole
+     * @return
+     */
     public Role createRole(String nameRole){
         Role role = new Role(0,0,0);
 

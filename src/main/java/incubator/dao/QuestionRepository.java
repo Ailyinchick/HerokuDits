@@ -18,7 +18,13 @@ public class QuestionRepository implements DaoRepos<Question>{
         return sessionFactory;
     }
 
-    public double testsDifficulty(int x) {
+    /**
+     * Method returns rate of correct answers for question
+     * @param x
+     * @return
+     */
+
+    public double questionDifficulty(int x) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/managementsystem?verifyServerCertificate=false&useSSL=true", "root", "123qwe");

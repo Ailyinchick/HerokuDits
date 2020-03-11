@@ -31,19 +31,20 @@ public class CreateTopicTestQuestionService {
     @Autowired
     QuestionService questionService;
 
+    /**
+     * Method creates new question with current topic and for current test
+     * @param nameTopic
+     * @param nameTest
+     * @param nameQuestion
+     * @return
+     */
+
     @Transactional
     public Question createNewQuestion(String nameTopic, String nameTest, String nameQuestion) {
-
-
         Topic topic = topicService.createTopicByName(nameTopic);
-
         Test test = testService.createTestByName(nameTest, topic);
-
-
         Question question = questionService.getQuestionByDescription(nameQuestion, test);
         return question;
-
-
     }
 
 }

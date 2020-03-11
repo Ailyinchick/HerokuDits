@@ -14,6 +14,11 @@ public class AnswerService {
     @Autowired
     AnswerRepository answerRepository;
 
+    /**
+     * Method checks all answers in DB and returns answer with current description if it exists
+      * @param ansDescrip
+     * @return
+     */
 
     public Answer getAnswerByDescription(String ansDescrip) {
         List<Answer> answerList = answerRepository.findAll(Answer.class, answerRepository.getBeanToBeAutowired());
@@ -26,7 +31,7 @@ public class AnswerService {
                 }
             }
         } else {
-            System.out.println("Всё плохо. Такого варианта ответа не найдено в БД");
+            System.out.println("Такого варианта ответа не найдено в БД");
         }
         return answer;
     }

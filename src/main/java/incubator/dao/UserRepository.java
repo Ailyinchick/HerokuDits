@@ -19,6 +19,12 @@ public class UserRepository implements DaoRepos<User> {
         return sessionFactory;
     }
 
+    /**
+     * Method checks if user with this name 'login' is exist
+     * @param login
+     * @return
+     */
+
     public boolean ifExistsUserWithLogin(String login){
         Session session = sessionFactory.getCurrentSession();
         Query query;

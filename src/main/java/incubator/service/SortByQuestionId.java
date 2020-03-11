@@ -1,7 +1,5 @@
 package incubator.service;
 
-import incubator.model.Question;
-
 import java.util.Comparator;
 
 public class SortByQuestionId implements Comparator<QuestionStatModel> {

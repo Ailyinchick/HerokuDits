@@ -18,13 +18,16 @@ public class TestRepository implements DaoRepos<Test> {
         return sessionFactory;
     }
 
+    /**
+     * Method returns rate of correct answers for test
+     * @param testId
+     * @return
+     */
+
     public int testsDifficulty(int testId) {
         try {
             Class.forName("com.mysql.jdbc.Driver");
-
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/managementsystem", "root", "root1");
-
-//            Connection con = DriverManager.getConnection("jdbc:mysql://localhost:3306/managementsystem?verifyServerCertificate=false&useSSL=true", "root", "123qwe");
             Statement st = con.createStatement();
             ResultSet rs = st.executeQuery("select   testdifficulty(" + testId + ")");
             while (rs.next()) {

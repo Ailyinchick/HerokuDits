@@ -28,6 +28,16 @@ public class StatisticRepository implements DaoRepos<Statistic> {
         return sessionFactory;
     }
 
+
+    /**
+     * Method returns List of statistic by user id from start to end, where 'start' and 'end' should be Strings in DateTime format
+     *
+     * @param userId
+     * @param start
+     * @param end
+     * @return List<Statistic>
+     */
+
     public List<Statistic> personalUserTestStatistic(String userId, String start, String end) {
         List<Statistic> statisticList = new ArrayList<>();
         try {
@@ -53,6 +63,14 @@ public class StatisticRepository implements DaoRepos<Statistic> {
         return statisticList;
     }
 
+
+    /**
+     * Method returns List of statistic models by user id; here we calculate rate of correct answers of user
+     *
+     * @param userId
+     * @return
+     */
+
     public List<QuestionStatModel> personalUserStatistic(int userId) {
         List<Statistic> statisticList = userService.getUserByUserId(userId).getStatistics();
         Set<Question> questionSet = new HashSet<>();
@@ -63,8 +81,7 @@ public class StatisticRepository implements DaoRepos<Statistic> {
             questionSet.add(statistic.getQuestion());
         }
 
-        for (Question q : questionSet
-        ) {
+        for (Question q : questionSet) {
             QuestionStatModel questionStatModel = new QuestionStatModel();
             int questionRate = 0;
             int answerCount = 0;
@@ -90,8 +107,4 @@ public class StatisticRepository implements DaoRepos<Statistic> {
         return statList;
     }
 
-
-
-
-
-    }
+}

@@ -35,7 +35,7 @@ public class TopicService {
                 }
             }
         } else {
-            System.out.println("Всё плохо, такой топик не найден");
+            System.out.println("Такой топик не найден в БД");
         }
         return str;
     }
@@ -56,21 +56,12 @@ public class TopicService {
         for (Topic t : getTopics()
         ) {
             if (nameTopic.equals(t.getName())) {
-//                result.setName(t.getName());
-//                result.setDescription(t.getDescription());
-//                result.setTopicId(t.getTopicId());
                 return t;
-//                result = new Topic(t);
-                //result.setTests(null);
-
-//                break;
             }
         }
-
         Topic topic = new Topic();
         topic.setName(nameTopic);
         topicRepository.create(topic);
-
         return topic;
     }
 

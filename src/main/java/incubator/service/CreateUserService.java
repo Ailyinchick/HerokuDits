@@ -23,6 +23,12 @@ public class CreateUserService {
     }
 
 
+    /**
+     * Method saves in DB new user with current login and role (admin, user, tutor)
+     * @param user
+     * @param nameRole
+     */
+
     @Transactional
     public void сreateUser(User user, String nameRole) {
         user.setRole(roleService.createRole(nameRole));
@@ -30,10 +36,5 @@ public class CreateUserService {
         user.setPassword(codedPassword);
         userRepository.create(user);
     }
-
-//    @Transactional
-//    public boolean ifExistsUserWithLogin(String login) {
-//        return userRepository.ifExistsUserWithLogin(login);
-//    }
 
 }

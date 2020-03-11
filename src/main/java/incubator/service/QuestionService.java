@@ -17,6 +17,12 @@ public class QuestionService {
     @Autowired
     QuestionRepository questionRepository;
 
+    /**
+     * Method returns List of answers for current question by it's id
+     * @param questionId
+     * @return
+     */
+
     public List<String> getAnswersByQuestion(int questionId) {
         List<Question> questions = questionRepository.findAll(Question.class, questionRepository.getBeanToBeAutowired());
         List<String> str = new ArrayList<>();
@@ -31,10 +37,16 @@ public class QuestionService {
                 }
             }
         } else {
-            System.out.println("Всё плохо, такой вопрос не найден");
+            System.out.println("Такой вопрос не найден в БД");
         }
         return str;
     }
+
+    /**
+     * Method checks if question with current id is exist and returns it
+     * @param id
+     * @return
+     */
 
     public Question getQuestionById(int id) {
         Question question = new Question();
@@ -47,7 +59,7 @@ public class QuestionService {
                 }
             }
         } else {
-            System.out.println("Всё плохо, вопроса в таким описанием нет в БД");
+            System.out.println("Вопроса в таким описанием нет в БД");
         }
         return question;
     }
@@ -55,6 +67,11 @@ public class QuestionService {
     public List<Question> getAllQuestions() {
         return questionRepository.findAll(Question.class, questionRepository.getBeanToBeAutowired());
     }
+
+    /**
+     * Method returns List of String with all questions description
+     * @return
+     */
 
     public List<String> getNamesQuestions() {
         List<String> namesTopics = new ArrayList<>();
@@ -65,19 +82,17 @@ public class QuestionService {
         return namesTopics;
     }
 
-    //public  ifExists
+    /**
+     * Method creates question with current description and test and returns it
+     * @param nameQuestion
+     * @param test
+     * @return
+     */
+
     public Question getQuestionByDescription(String nameQuestion, Test test) {
-//        for (Question q : getAllQuestions()
-//        ) {
-//            if (nameQuestion.equals(q.getDescription())) {
-//                return q;
-//            }
-//        }
         Question question = new Question();
         question.setDescription(nameQuestion);
         question.setTest(test);
-        //question.setTest(test);
-//        questionRepository.testingCreateMethod(question, questionRepository.getBeanToBeAutowired());
         questionRepository.create(question);
         return question;
     }
