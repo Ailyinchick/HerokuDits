@@ -22,6 +22,11 @@ public class TopicService {
         return topicRepository.findAll(Topic.class, topicRepository.getBeanToBeAutowired());
     }
 
+    /**
+     * Method returns List of String with test names for current topic
+     * @param topicName
+     * @return
+     */
     public List<String> getTestsByTopic(String topicName) {
         List<String> str = new ArrayList<>();
         if (topicRepository.findAll(Topic.class, topicRepository.getBeanToBeAutowired()).toString().contains(topicName)) {
@@ -40,19 +45,21 @@ public class TopicService {
         return str;
     }
 
+
+    /**
+     * Method returns List with all topic names
+     * @return
+     */
     public List<String> getNamesTopics() {
         List<String> namesTopicsL = new ArrayList<>();
-
         for (Topic t : topicRepository.findAll(Topic.class, topicRepository.getBeanToBeAutowired())
         ) {
             namesTopicsL.add(t.getName());
         }
-
         return namesTopicsL;
     }
 
     public Topic getTopicByName(String nameTopic) {
-
         for (Topic t : getTopics()
         ) {
             if (nameTopic.equals(t.getName())) {
@@ -65,14 +72,17 @@ public class TopicService {
         return topic;
     }
 
+    /**
+     * Method creates Topic and saves it in DB and returns it
+     * @param nameTopic
+     * @return
+     */
     public Topic createTopicByName(String nameTopic) {
         Topic newTopic = new Topic();
         for (Topic t : getTopics()
         ) {
             if (nameTopic.equals(t.getName())) {
                 newTopic.setTopicId(t.getTopicId());
-                newTopic.setName(t.getName());
-                newTopic.setDescription(t.getDescription());
                 return newTopic;
             }
         }
@@ -80,8 +90,6 @@ public class TopicService {
         newTopic.setDescription(nameTopic);
         topicRepository.create(newTopic);
         return newTopic;
-
-
     }
 
 }

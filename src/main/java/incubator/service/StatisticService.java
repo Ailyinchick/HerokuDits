@@ -37,52 +37,56 @@ public class StatisticService {
         return statisticRepository.findAll(Statistic.class, statisticRepository.getBeanToBeAutowired());
     }
 
-
-    public void userStatistic(int id) {
-        double userRate = 0;
-        int var = 0;
-        List<Statistic> list = statisticRepository.findAll(Statistic.class, statisticRepository.getBeanToBeAutowired());
-        List<Statistic> allUserList = new ArrayList<>();
-        List<Statistic> correctUserList = new ArrayList<>();
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).getUser().getUserId() == id) {
-                if (list.get(i).getCorrect() == 1) {
-                    correctUserList.add(list.get(i));
-                }
-                allUserList.add(list.get(i));
-                var = i;
-            }
-        }
-        userRate = ((double) correctUserList.size() / allUserList.size()) * 100;
-        System.out.println("Рейтинг пользователя " + list.get(var).getUser().getFirstName() + " - " + userRate + "%");
-    }
-
+    /**
+     * Method saves statistic in DB
+     * @param statistic
+     */
     @Transactional
     public void testingCreateMethod(Statistic statistic) {
         statisticRepository.testingCreateMethod(statistic, statisticRepository.getBeanToBeAutowired());
     }
 
+    /**
+     * Method returns List of 'Statistic' objects for current user by ints login and with current date and time from begin to end
+     * @param userId
+     * @param start
+     * @param end
+     * @return
+     */
     public List<Statistic> selectUserTestStatistic(String userId, String start, String end) {
         return statisticRepository.personalUserTestStatistic(userId, start, end);
     }
 
-
+    /**
+     * Method returns List of 'Statistic' for current question by it's id
+     * @param questionId
+     * @return
+     */
     public List<Statistic> getFilteredStatisticByQuestionId(int questionId) {
         List<Statistic> statistics = new ArrayList<>(findAll());
         statistics.removeIf(q -> questionId != q.getQuestion().getQuestionId());
         return statistics;
     }
 
+    /**
+     * Method returns List of 'Statistic' for current test by it's id
+     * @param testId
+     * @return
+     */
     public List<Statistic> getFilteredStatisticByTestId(int testId) {
         List<Statistic> statistics = new ArrayList<>(findAll());
         statistics.removeIf(t -> testId != t.getQuestion().getTest().getTestId());
         return statistics;
     }
 
-
+    /**
+     * Method returns List of 'Statistic' for current user and current test
+     * @param statistic
+     * @return
+     */
     public List<Statistic> getFilteredStatisticByTestUser(Statistic statistic) {
         List<Statistic> statistics = new ArrayList<>(findAll());
-        statistics.removeIf(u -> statistic.getUser().getUserId() != u.getUser().getUserId());//t.getQuestion().getTest().getTestId());
+        statistics.removeIf(u -> statistic.getUser().getUserId() != u.getUser().getUserId());
         statistics.removeIf(t -> statistic.getQuestion().getTest().getTestId() != t.getQuestion().getTest().getTestId());
         return statistics;
     }

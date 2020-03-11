@@ -36,12 +36,12 @@ public class StatisticServiceTest extends AbstractTestNGSpringContextTests {
     @Autowired
     UserService userService;
 
-    @Test
+/*    @Test
     public void showAll() {
         for (int i = 1; i < 6; i++) {
             statisticService.userStatistic(i);
         }
-    }
+    }*/
 
     @Test
     public void fastTest() {

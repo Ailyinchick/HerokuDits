@@ -14,6 +14,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
+
+    /**
+     * Method returns List with usernames
+     * @return
+     */
     public List<String> getUsernames() {
         List<User> list = userRepository.findAll(User.class, userRepository.getBeanToBeAutowired());
         List<String> usernames = new ArrayList<>();
@@ -24,6 +29,11 @@ public class UserService {
         return usernames;
     }
 
+    /**
+     * Method returns user by its id
+     * @param inUserId
+     * @return
+     */
     public User getUserByUserId(int inUserId) {
         User outUser = new User();
         if (inUserId >= 1 && inUserId <= getUsernames().size()) {
@@ -37,6 +47,11 @@ public class UserService {
         return outUser;
     }
 
+    /**
+     * Method returns object of class 'User' with current username
+     * @param username
+     * @return
+     */
     public User getUserByUsername(String username) {
         User outUser = new User();
         if (getUsernames().contains(username)) {
