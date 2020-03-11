@@ -21,8 +21,6 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addResourceHandler("resources//images/**").addResourceLocations("/resources/images/");
     }
 
-
-
     @Bean
     ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
